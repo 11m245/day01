@@ -1,0 +1,81 @@
+Write a blog on Difference between HTTP1.1 vs HTTP2
+
+Key Features of HTTP/1.1:
+It was no longer required for each connection to be terminated immediately after every request was served with a response;
+ instead, with the keep-alive header, it was possible to have persistent connections. It allowed multiple requests/responses per TCP connection.
+The Upgrade header was used to indicate a preference from the client that made it possible to switch to a more preferred protocol if found appropriate by the server.
+HTTP/1.1 provided support for chunk transfers that allowed streaming of content dynamically as chunks and for additional headers to be sent after the message body. 
+This enhancement was particularly useful in cases where values of a field remained unknown until the content had been produced. 
+
+For example, when the content had to be digitally signed, it was not possible to do so before the entire content gets generated.
+Other features that reinforced its stability were introduced such as:
+pipelining (the second request is sent before the response to the first is adequately served)
+content negotiation (an exchange between client and server to determine the media type, 
+it also provides the provision to serve different versions of a resource at the same URI)
+cache control (used to specify caching policies in both requests and responses)
+
+The Protocol Designed to Speed Up Today’s Complex Web pages: HTTP/2
+At the beginning of 2010, Google introduced an experimental protocol, SPDY, which supported multiplexing 
+(multiple requests/responses sent and received asynchronously over a single TCP connection) but as it gained traction IETF’s 
+HTTP Working Group came up with HTTP/2 in 2015, which is based on the SPDY protocol.
+
+Key Features of HTTP/2:
+It introduces the concept of a server push where the server anticipates the resources that will be required by the client 
+and pushes them prior to the client making requests. The client retains the authority to deny the server push; however, 
+in most cases, this feature adds a lot of efficiency to the process.
+
+Figure 4: Server push in HTTP/2
+Introduces the concept of multiplexing that interleaves the requests and responses without head-of-line blocking and does so over a single TCP connection.
+Figure 5: Multiplexing in HTTP/2
+It is a binary protocol i.e. only binary commands in the form of 0s and 1s are transmitted over the wire. 
+The binary framing layer divides the message into frames that are segregated based on their type – Data or Header.
+This feature greatly increases efficiency in terms of security, compression and multiplexing.
+Figure 6: Binary Framing Layer
+Figure 7: HTTP/2 - Binary Traffic
+HTTP/2 uses HPACK header compression algorithm that is resilient to attacks like CRIME and utilizes static Huffman encoding.
+HTTP/3, the next version in the series, is based on Google’s QUIC which, unlike its precursors is a drastic shift to UDP. 
+Given the gradual adoption rate of HTTP/2, HTTP/3 with its security challenges 
+(that comes into play the moment we switch from TCP to UDP) is expected to face some difficulties.
+
+
+Write a blog about objects and its internal representation in Javascript
+
+
+In JavaScript objects are simply a collection of key/value pairs. 
+
+The simplest way to create an object is with the “object literal” notation:
+
+{} // this is an empty object 
+
+var myObj = {a: 1, b: 2} // myObj is assigned an object 
+
+
+// this object has 2 keys (a and b) and 2 values (1 and 2) 
+ 
+// we can get a value from an object by referencing the key 
+ 
+myObj['a'] // this is called bracket notation and returns 1 // used this bracket notation for both arrays and objects 
+// keys are referred as strings with double quotes in this notation
+
+myObj.b    // this is called dot notation and returns 2 here
+
+
+
+One quirk to be aware of is that the key is internally stored as a string.
+
+Any valid JavaScript value may be associated with a key in a JavaScript object. 
+
+A value attached to an object is referred to as a “property”. A property that is a function is referred to as a “method”.
+
+Most things in JavaScript are actually types of objects (with the exception of keywords and operators).
+
+var myStr = 'hello!' // myStr is a string 
+myStr[1] // returns 'e' because it is also an object! 
+ 
+var myArr = [1, 2, 3, 4] // myArr is an array 
+myArr['2'] // returns 3 because an array is an object and keys are strings! 
+
+
+
+
+
